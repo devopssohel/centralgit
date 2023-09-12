@@ -1,3 +1,2 @@
 #!/bin/bash
-# Your script commands go here
-yum install -y httpd   # Example command
+yum install -y httpd
