@@ -1,18 +1,14 @@
 version: 0.0
 os: linux
 files:
-  - source: /index.html
-    destination: /var/www/html/
+ - source: /index.html
+    destination: /var/www/html/ # Update this path to your application directory
+
 hooks:
   BeforeInstall:
-    - location: /install_dependencies
-      timeout: 300
-      runas: root
-    - location: /start_server
-      timeout: 300
-      runas: root
-  ApplicationStop:
-    - location: /stop_server
-      timeout: 300
-      runas: root
+    - location: scripts/before_install.sh  # Relative path to your "before install" script
+      timeout: 300  # Maximum execution time in seconds
+      runas: ec2-user  # The user under which the script should run
+      ignoreErrors: false  # Set to true if you want to continue deployment even if the script fails
 
+  # Add other hooks for other phases like "AfterInstall," "ApplicationStart," etc. as needed
